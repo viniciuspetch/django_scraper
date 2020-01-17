@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from scraper.models import Article
 from django.utils import timezone
 import requests
 import urllib.request
@@ -17,6 +18,11 @@ def scrape():
         item_id = title_href.split('/')[4].split('-')[0]
         print('('+item_id+') '+title.string)
         print(title_href)
+
+        if len(Article.objects.filter(article_id=item_id)) == 0:
+            Article(article_id=item_id, url=title_href,
+                    title=title.string).save()
+    print(Article.objects.all())
 
 
 class Command(BaseCommand):
