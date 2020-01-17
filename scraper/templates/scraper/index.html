@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,10 +10,15 @@
 
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" href="images/favicon.png" />
-  </head>
+</head>
 
-  <body>
+<body>
     <script src="js/scripts.js"></script>
-    Hello world or something
-  </body>
+    <ul>
+        {% for article in article_list %}
+            <li>{{ article.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
 </html>

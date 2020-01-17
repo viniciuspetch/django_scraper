@@ -1,5 +1,5 @@
 from django.shortcuts import render
+from scraper.models import Article
 
 def index(request):
-    context = {}
-    return render(request, 'scraper/index.html', context)
+    return render(request, 'scraper/index.html', {'article_list': Article.objects.all()})
