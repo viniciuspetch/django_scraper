@@ -5,16 +5,28 @@ body {
 
 .main {
     margin: 20px;
-    max-width: 600px;    
-    
+    max-width: 600px;
 }
 
 .search-form {
     margin: 15px;
-    max-width: 570px;
 }
 
 .card {
     background: #062f4f;
     margin: 15px;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.article-item:hover {
+    background-color: #813772;
 }

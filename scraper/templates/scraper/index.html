@@ -21,12 +21,16 @@
 
 <body>
     <div class="main">
-        <input type="text" class="form-control search-form" onkeyup="return search()" id="search"
-            placeholder="Search here">
-        {% for article in article_list %}
-        <div class="card article-item">
-            <div class="card-body">{{ article.title }}</div>
+        <div class="search-form">
+            <input type="text" class="form-control" onkeyup="return search()" id="search" placeholder="Search here">
         </div>
+
+        {% for article in article_list %}
+        <a href="{{ article.url }}">
+            <div class="card article-item">
+                <div class="card-body">{{ article.title }}</div>
+            </div>
+        </a>
         {% endfor %}
     </div>
 </body>
