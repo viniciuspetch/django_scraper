@@ -1,0 +1,20 @@
+body {
+    background: #000000;
+    color: #ffffff;
+}
+
+.main {
+    margin: 20px;
+    max-width: 600px;    
+    
+}
+
+.search-form {
+    margin: 15px;
+    max-width: 570px;
+}
+
+.card {
+    background: #062f4f;
+    margin: 15px;
+}
