@@ -15,7 +15,7 @@ def scrape():
         item_id = title_href.split('/')[4].split('-')[0]
 
         if len(Article.objects.filter(article_id=item_id)) == 0:
-            Article(article_id=item_id, url=title_href,
+            Article(source='Tecmundo', article_id=item_id, url=title_href,
                     title=title.string).save()
             print('!!NEW!! ('+item_id+') '+title.string)
 
