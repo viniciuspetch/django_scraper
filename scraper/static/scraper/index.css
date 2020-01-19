@@ -30,3 +30,7 @@ a:hover {
 .article-item:hover {
     background-color: #813772;
 }
+
+.caption {
+    font-size: 10px;
+}

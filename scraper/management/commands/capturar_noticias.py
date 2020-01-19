@@ -15,34 +15,34 @@ def scrape():
     article_list = soup.find_all(class_='tec--carousel__item__title__link')
 
     # For each article, get the ID, URL, title and content
-    article = article_list[0]
-    article_title = article.string
-    article_url = article.get('href')
-    article_id = article_url.split('/')[4].split('-')[0]
-    response = requests.get(article_url)
-    soup = BeautifulSoup(response.text, "html.parser")
-    article_content_bs4 = soup.find(class_="tec--article__body")
-    article_content = ""
+    for article in article_list:
+        article_title = article.string
+        article_url = article.get('href')
+        article_id = article_url.split('/')[4].split('-')[0]
+        response = requests.get(article_url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        article_content_bs4 = soup.find(class_="tec--article__body")
+        article_content = ""
 
-    for tag in article_content_bs4.children:
-        print(tag.name)
-        if tag.name == "p" or tag.name == "h2":
-            article_content = article_content + str(tag)
-        if tag.name == "figure":
-            img = tag.img
-            print(img['data-src'].split('?')[0])
-            print(type(img))
-            article_content = article_content + '<img src="' + img['data-src'].split('?')[0] + '">' + str(tag.figcaption)
+        # Due to unlinked classes and other stuff, it's needed to rebuild the article itself, filtering out some stuff and remodeling others
+        for tag in article_content_bs4.children:
+            # This long 'if' will filter out all tags that are not 'p' or 'h2', those who are embedded videos (that did not work for some reason), or the last paragraph (which is a text unrelated to the article)
+            if (tag.name == "p" and (not tag.has_attr('class') or tag['class'] != 'video-center') and (tag.span == None or tag.span.get_text() != 'Cupons de desconto TecMundo:')) or tag.name == "h2":
+                article_content = article_content + str(tag)
+            # This 'if' will filter images and captions, and make it so they work properly on the portal
+            if tag.name == "figure":
+                article_content = article_content + '<img style="max-width: 100%" src="' + \
+                    tag.img['data-src'].split('?')[0] + \
+                    '"><p class="caption">' + tag.figcaption.get_text() + '</p>'
 
-
-    # If the ID is not found, it's considered a new article, so it's added to the DB
-    if len(Article.objects.filter(article_id=article_id)) == 0:
-        Article(source='Tecmundo', article_id=article_id, url=article_url,
-                title=article_title, content=article_content).save()
-        print('!!NEW!! ('+article_id+') '+article_title)
-    # Otherwise, only show on the console
-    else:
-        print('('+article_id+') '+article_title)
+        # If the ID is not found, it's considered a new article, so it's added to the DB
+        if len(Article.objects.filter(article_id=article_id)) == 0:
+            Article(source='Tecmundo', article_id=article_id, url=article_url,
+                    title=article_title, content=article_content).save()
+            print('!!NEW!! ('+article_id+') '+article_title)
+        # Otherwise, only show on the console
+        else:
+            print('('+article_id+') '+article_title)
 
 
 class Command(BaseCommand):
