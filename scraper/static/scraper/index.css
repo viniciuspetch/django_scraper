@@ -1,6 +1,6 @@
 body {
-    background: #000000;
-    color: #ffffff;
+    background: #fae3d9;
+    color: #000000;
 }
 
 .main {
@@ -13,7 +13,7 @@ body {
 }
 
 .card {
-    background: #062f4f;
+    background: #ffffff;
     margin: 15px;
 }
 
@@ -25,10 +25,6 @@ a {
 a:hover {
     color: inherit;
     text-decoration: inherit;
-}
-
-.article-item:hover {
-    background-color: #813772;
 }
 
 .caption {
