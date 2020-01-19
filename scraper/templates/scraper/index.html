@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- Scripts and CSS for Bootstrap, Jquery and Popper -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -13,6 +14,7 @@
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our own CSS and JS -->
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'scraper/index.css' %}">
     <script src="{% static 'scraper/index.js' %}"></script>
@@ -21,10 +23,12 @@
 
 <body>
     <div class="main">
+        <!-- Search form, filters the article list on each keypress -->
         <div class="search-form">
             <input type="text" class="form-control" onkeyup="return search()" id="search" placeholder="Search here">
         </div>
 
+        <!-- Article list, with each being a clickable link redirecting to the article itself -->
         {% for article in article_list %}
         <a href="{{ article.url }}">
             <div class="card article-item">

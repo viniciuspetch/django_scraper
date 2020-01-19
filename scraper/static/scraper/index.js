@@ -1,3 +1,4 @@
+// Search function, called each keypress to hide/show articles, filtering based on string search
 function search() {
   console.log("function: search()");
 
@@ -12,6 +13,7 @@ function search() {
   });
 }
 
+// Just to show the JS was loaded
 $(function () {
   console.log('index.js loaded.');
 });
