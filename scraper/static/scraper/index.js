@@ -2,10 +2,10 @@
 function search() {
   console.log("function: search()");
 
-  let searchString = $('#search').val();
-  console.log(searchString);
+  let searchString = $('#search').val().toLowerCase();
   $(".article-item").each(function () {
-    if ($(this).find(".card-body").text().includes(searchString)) {
+    let article_title = $(this).find(".card-body").text().toLowerCase();
+    if (article_title.includes(searchString)) {
       $(this).show();
     } else {
       $(this).hide();
