@@ -5,6 +5,22 @@ import requests
 from bs4 import BeautifulSoup
 
 
+def remodel_content(raw_content):
+    article_content = ''
+    for tag in raw_content.children:
+        # This long 'if' will filter out all tags that are not 'p' or 'h2', those who are embedded videos (that did not work for some reason), or the last paragraph (which is a text unrelated to the article)
+        if (tag.name == "p" and (not tag.has_attr('class') or tag['class'][0] != 'video-center') and (tag.span == None or tag.span.get_text() != 'Cupons de desconto TecMundo:')) or tag.name == "h2":
+            article_content = article_content + str(tag)
+        # This 'if' will filter images and captions, and make it so they work properly on the portal
+        elif tag.has_attr('class') and tag['class'][0] == 'video-center':
+            article_content = article_content + '<iframe width="600" height="400" src="' + tag.span.iframe['data-src'].split('https:')[1] + '"></iframe>'
+        elif tag.name == "figure":
+            article_content = article_content + '<img style="max-width: 100%" src="' + \
+                tag.img['data-src'].split('?')[0] + \
+                '"><p class="caption">' + tag.figcaption.get_text() + '</p>'
+    return article_content
+
+
 def scrape():
     # URL Request and HTML parsing
     url = 'https://www.tecmundo.com.br/'
@@ -25,15 +41,7 @@ def scrape():
         article_content = ""
 
         # Due to unlinked classes and other stuff, it's needed to rebuild the article itself, filtering out some stuff and remodeling others
-        for tag in article_content_bs4.children:
-            # This long 'if' will filter out all tags that are not 'p' or 'h2', those who are embedded videos (that did not work for some reason), or the last paragraph (which is a text unrelated to the article)
-            if (tag.name == "p" and (not tag.has_attr('class') or tag['class'] != 'video-center') and (tag.span == None or tag.span.get_text() != 'Cupons de desconto TecMundo:')) or tag.name == "h2":
-                article_content = article_content + str(tag)
-            # This 'if' will filter images and captions, and make it so they work properly on the portal
-            if tag.name == "figure":
-                article_content = article_content + '<img style="max-width: 100%" src="' + \
-                    tag.img['data-src'].split('?')[0] + \
-                    '"><p class="caption">' + tag.figcaption.get_text() + '</p>'
+        article_content = remodel_content(article_content_bs4)
 
         # If the ID is not found, it's considered a new article, so it's added to the DB
         if len(Article.objects.filter(article_id=article_id)) == 0:
