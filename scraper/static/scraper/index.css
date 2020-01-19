@@ -17,12 +17,12 @@ body {
     margin: 15px;
 }
 
-a {
+.article-item > a {
     color: inherit;
     text-decoration: inherit;
 }
 
-a:hover {
+.article-item > a:hover {
     color: inherit;
     text-decoration: inherit;
 }
