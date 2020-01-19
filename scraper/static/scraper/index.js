@@ -4,7 +4,7 @@ function search() {
 
   let searchString = $('#search').val().toLowerCase();
   $(".article-item").each(function () {
-    let article_title = $(this).find(".card-body").text().toLowerCase();
+    let article_title = $(this).find(".card-header").text().toLowerCase();
     if (article_title.includes(searchString)) {
       $(this).show();
     } else {
