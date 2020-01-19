@@ -34,6 +34,8 @@
             <a data-toggle="collapse" href="#article_{{ article.article_id }}" role="button" aria-expanded="false"
                 aria-controls="article_{{ article.article_id }}">
                 <div class="card-header">
+                    <img class="icon-close" src="{% static 'scraper/chevron-right.svg' %}" width="21" height="21">
+                    <img class="icon-open" src="{% static 'scraper/chevron-down.svg' %}" width="21" height="21" style="display: none">
                     {{ article.title }}
                 </div>
             </a>

@@ -16,4 +16,14 @@ function search() {
 // Just to show the JS was loaded
 $(function () {
   console.log('index.js loaded.');
+
+  $('.collapse').on('show.bs.collapse', function () {
+    $(this).prev().find(".icon-close").hide();
+    $(this).prev().find(".icon-open").show();
+  });
+  
+  $('.collapse').on('hidden.bs.collapse', function () {
+    $(this).prev().find(".icon-close").show();
+    $(this).prev().find(".icon-open").hide();
+  });
 });
