@@ -1,4 +1,0 @@
-== Dependência do projeto ==
-- Bootstrap.css, Bootstrap.js, Jquery.js e Popper.js, por meio de CDN: utilizados no front-end
-- requests e BeautifulSoup: instalados e importados, utilizados no script para importar as notícias do Tecmundo
-- SQLite 3: vem por padrão no Django
