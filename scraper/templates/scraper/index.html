@@ -33,6 +33,7 @@
         <a href="{{ article.url }}">
             <div class="card article-item">
                 <div class="card-body">{{ article.title }}</div>
+                <div class="card-body">{{ article.content | safe }}</div>
             </div>
         </a>
         {% endfor %}
