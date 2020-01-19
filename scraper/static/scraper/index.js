@@ -26,4 +26,9 @@ $(function () {
     $(this).prev().find(".icon-close").show();
     $(this).prev().find(".icon-open").hide();
   });
+
+  $('#clear-btn').on('click', function() {
+    $('#search').val('');
+    search();
+  });
 });

@@ -25,7 +25,12 @@
     <div class="main">
         <!-- Search form, filters the article list on each keypress -->
         <div class="search-form">
-            <input type="text" class="form-control" onkeyup="return search()" id="search" placeholder="Search here">
+            <div class="input-group">
+                <input type="text" class="form-control" onkeyup="return search()" id="search" placeholder="Search here">
+                <div class="input-group-append">
+                    <button id="clear-btn" class="btn btn-dark">Clear</button>
+                </div>
+            </div>
         </div>
 
         <!-- Article list, with each being a clickable link redirecting to the article itself -->
@@ -35,7 +40,8 @@
                 aria-controls="article_{{ article.article_id }}">
                 <div class="card-header">
                     <img class="icon-close" src="{% static 'scraper/chevron-right.svg' %}" width="21" height="21">
-                    <img class="icon-open" src="{% static 'scraper/chevron-down.svg' %}" width="21" height="21" style="display: none">
+                    <img class="icon-open" src="{% static 'scraper/chevron-down.svg' %}" width="21" height="21"
+                        style="display: none">
                     {{ article.title }}
                 </div>
             </a>
