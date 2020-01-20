@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from scraper.models import Article
 from django.utils import timezone
 import requests
+import urllib3
 from bs4 import BeautifulSoup
 
 
