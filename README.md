@@ -1,5 +1,5 @@
 # News Hub
-News Hub with scraper. Webpage/front-end, server/back-end, and web scraping script. Implemented in Django. Uses SQLite 3 as database. For now, the web scraping is manual, and works only on Tecmundo.
+News Hub with scraper. Webpage/front-end, server/back-end, and web scraping script. Implemented in Django. Uses SQLite 3 as database. For now, the web scraping is a manual script that works only on www.tecmundo.com.br
 
 ---
 
