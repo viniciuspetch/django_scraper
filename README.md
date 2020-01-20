@@ -25,7 +25,7 @@ Everything was made following the Django organization style.
 ### The web scraper and database
 The web scraper will get and store at the SQLite database the ID (extracted from the URL), URL, title, source (in this case, 'Tecmundo'), and the article itself.
 
-The dependencies of the web scraper are `requests` (to make HTTP requests) and `BeautifulSoup4` (to parse the collected HTML).
+The dependencies of the web scraper are `requests` and `urllib3`(to make HTTP requests) and `BeautifulSoup4` (to parse the collected HTML).
 
 ### The website
 The page will the built using Django Template and the list of articles from the database. The implemented JS will be responsible for filtering the articles based on the search bar (and clear search button), and for changing the `open/close` icon in each article title.
